@@ -1,636 +1,504 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-slate-950 text-slate-100">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOS VEA Recruitment Tracker - Knowledge Base & SOP Guide</title>
-    <!-- Tailwind CSS Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0284c7',
-                            600: '#0265d2',
-                            800: '#0f2c59',
-                            900: '#0b1d3a',
-                            gold: '#f59e0b',
-                            emerald: '#10b981',
-                        }
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOS VEA Master Knowledge Base & Document Navigation Guide</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff', 100: '#e0effe', 500: '#0284c7', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e'
             }
+          }
         }
-    </script>
-    <style>
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090d16;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
 </head>
-<body class="h-full flex flex-col font-sans antialiased overflow-hidden bg-slate-950 text-slate-200">
+<body class="h-full font-sans antialiased bg-slate-950 text-slate-100 flex flex-col custom-scrollbar overflow-x-hidden">
 
-    <header class="h-16 border-b border-slate-800 bg-slate-900/90 px-4 lg:px-8 flex items-center justify-between shrink-0 z-30">
-        <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-700 to-amber-500 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg border border-amber-400/40">
-                S
-            </div>
-            <div>
-                <div class="flex items-center space-x-2">
-                    <h1 class="font-extrabold text-base lg:text-lg text-white tracking-tight">STAY OUT SOLUTIONS</h1>
-                    <span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold px-2 py-0.5 rounded-full">v4.2 PROD</span>
-                </div>
-                <p class="text-[11px] text-slate-400 font-medium">VEA Recruitment & Operational System Knowledge Base</p>
-            </div>
+  <!-- Header -->
+  <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-sky-500/20 border border-sky-500/40 flex items-center justify-center font-black text-sky-400 text-sm">
+          SOS
         </div>
-
-        <div class="flex items-center space-x-3 text-xs">
-            <button onclick="setActiveTab('go-live')" class="flex items-center space-x-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-xl border border-emerald-500/30 transition-all font-semibold">
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>Go-Live Audit</span>
-            </button>
+        <div>
+          <h1 class="text-base font-bold text-white leading-tight">SOS VEA Program Master KB</h1>
+          <p class="text-[11px] text-slate-400">v4.2 Operational Manual & Document Navigation Guide</p>
         </div>
-    </header>
+      </div>
 
-    <div class="flex-1 flex overflow-hidden">
+      <!-- Module Switcher Tabs -->
+      <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs font-semibold">
+        <button id="view-sheets-btn" onclick="switchMainView('sheets')" class="px-3 py-1.5 rounded-md text-white bg-sky-600 transition-all">
+          📊 Workbook Reference (12 Tabs)
+        </button>
+        <button id="view-docs-btn" onclick="switchMainView('docs')" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">
+          📁 Document & SOP Directory
+        </button>
+      </div>
 
-        <!-- Sidebar Navigation -->
-        <aside class="w-80 border-r border-slate-800 bg-slate-900/50 flex flex-col shrink-0 overflow-hidden">
-            
-            <!-- Real-time Search Box -->
-            <div class="p-4 border-b border-slate-800 space-y-2.5">
-                <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Search Knowledge Base</label>
-                <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Search formulas, tabs, rules..." class="w-full bg-slate-950 text-slate-100 placeholder-slate-500 text-xs pl-8 pr-8 py-2 rounded-xl border border-slate-700 focus:outline-none focus:border-sky-500 transition-all">
-                    <svg class="w-4 h-4 text-slate-500 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    <button id="clearSearchBtn" class="hidden absolute right-2.5 top-2 text-slate-500 hover:text-slate-300">×</button>
-                </div>
-
-                <!-- Quick Tags -->
-                <div class="flex flex-wrap gap-1 pt-1">
-                    <button onclick="quickSearch('formula')" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-0.5 rounded border border-slate-700">#formulas</button>
-                    <button onclick="quickSearch('dry_run')" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-0.5 rounded border border-slate-700">#dry_run</button>
-                    <button onclick="quickSearch('connecteam')" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-sky-300 px-2 py-0.5 rounded border border-slate-700">#bids</button>
-                    <button onclick="quickSearch('stalled')" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-rose-300 px-2 py-0.5 rounded border border-slate-700">#stalled</button>
-                </div>
-            </div>
-
-            <!-- Tab Menu Items -->
-            <nav class="flex-1 overflow-y-auto p-3 space-y-1" id="navList">
-                <div class="px-2 py-1 text-[10px] font-bold tracking-wider text-slate-500 uppercase">Core Documentation</div>
-                
-                <button onclick="setActiveTab('overview')" data-nav-id="overview" class="nav-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all bg-sky-500/20 text-sky-400 border border-sky-500/30">
-                    <span class="truncate">System Overview & Rules</span>
-                </button>
-
-                <button onclick="setActiveTab('go-live')" data-nav-id="go-live" class="nav-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all hover:bg-slate-800 text-emerald-400">
-                    <span class="truncate">Pre-Go-Live Checklist</span>
-                    <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono">AUDIT</span>
-                </button>
-
-                <div class="px-2 py-1 text-[10px] font-bold tracking-wider text-slate-500 uppercase pt-3">12 Workbook Sheet Tabs</div>
-
-                <div id="workbookTabNavs" class="space-y-1">
-                    <!-- Injected via JavaScript -->
-                </div>
-            </nav>
-        </aside>
-
-        <!-- Main Display Content Area -->
-        <main class="flex-1 overflow-y-auto bg-slate-950 p-6 lg:p-10" id="mainContent">
-            <div id="contentDisplay" class="max-w-4xl mx-auto space-y-8">
-                <!-- Injected Content -->
-            </div>
-        </main>
+      <!-- Quick Status Badge -->
+      <div class="hidden md:flex items-center gap-2 text-xs">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Production Ready (v4.2)
+        </span>
+      </div>
     </div>
+  </header>
 
-    <script>
-        const workbookTabs = [
-            {
-                id: "readme",
-                num: "01",
-                title: "TOC & System Readme",
-                badge: "Navigation & Index",
-                purpose: "Serves as the central command hub, linking directly to every module in the workbook, presenting live applicant counts, and establishing operational governance rules for recruiters.",
-                steps: [
-                    "Use the quick-navigation hyperlinks at the top of the sheet to jump to specific operational sections instantly.",
-                    "Review high-level applicant throughput counters before launching daily recruitment tasks.",
-                    "Ensure team members follow color-coded cell standardizations (Manual vs Formula)."
-                ],
-                manualCells: "None (Contains index tables and hyperlinked tab titles).",
-                autoCells: "All statistics summary boxes (counts active applicants, total pipeline throughput, and match ratios).",
-                safeguards: [
-                    "DO NOT rename tab titles in Excel/Google Sheets; Apps Script relies on exact sheet name matching.",
-                    "Keep hyperlinked anchors untouched to prevent navigation breakage."
-                ],
-                keywords: ["readme", "toc", "navigation", "hyperlinks", "index", "overview", "system readme"]
-            },
-            {
-                id: "pipeline",
-                num: "02",
-                title: "Applicant Screening & Pipeline",
-                badge: "3,428 Active Formulas",
-                purpose: "The primary recruitment intake engine. Parses raw assessments (typing speed, pay expectations, Q1–Q5 quiz answers), auto-calculates total screening scores, applies pass/fail gate thresholds, and tracks candidate pipeline movement.",
-                steps: [
-                    "Input or import raw candidate submissions into Rows starting from Row 5.",
-                    "Watch Columns V to AC auto-calculate typing speed, pay rate normalization, Q1–Q5 grading, and Total Score.",
-                    "Check Column AE ('Gate Result') to instantly see if the candidate passed pre-screening.",
-                    "Review Column AF ('Tier Suggestion') for automated tier classification (Tier 1 vs Tier 2).",
-                    "Update Column AG ('Effective Tier') and Column AU ('Next Step') to advance candidates."
-                ],
-                manualCells: "Columns A to U (Candidate Info: Name, Email, Typing Link, Raw Answers, Desired Pay, Availability).",
-                autoCells: "Columns V to AC (Parsed metrics, Q1–Q5 auto-score), Column AE (Gate Result), Column AF (Tier Suggestion), Column AK (48h Stall Warning), Auxiliary Columns AY:BE (Rate parsing regex & WPM extraction).",
-                safeguards: [
-                    "CRITICAL: Never type or paste text over Columns V to AC or AY to BE. These contain automated green-coded formulas.",
-                    "Formulas are pre-dragged to Row 218. When your pipeline reaches Row 200, select Row 218 and drag formulas down to Row 1,000.",
-                    "If Column AK displays 'STALLED (48h+)', check Column AU and immediately trigger follow-up."
-                ],
-                keywords: ["pipeline", "screening", "applicant", "wpm", "rate parsing", "typing speed", "q1", "q2", "gate result", "tier suggestion", "effective tier", "stalled candidate", "48h", "next step", "ay", "be"]
-            },
-            {
-                id: "practical",
-                num: "03",
-                title: "Practical Scoring",
-                badge: "1,200 Active Formulas",
-                purpose: "Evaluates candidates who passed pre-screening through practical simulation tests (Inbox Management, Calendar Scheduling, Executive Communication, and Tool Proficiency). Automatically applies penalty deductions and calculates weighted final scores.",
-                steps: [
-                    "Locate candidate row (Pre-dragged down to Row 322).",
-                    "Input raw component evaluation points in Columns C through Q.",
-                    "Record deduction points (e.g., formatting errors, missed deadlines) in Column S.",
-                    "Observe auto-calculated Weighted Base Score (Col R), Final Score (Col T), and Final Result (Col V).",
-                    "If Candidate receives 'RETEST', record retest score in designated retest columns."
-                ],
-                manualCells: "Columns A to Q (Candidate Metadata & Raw practical task scores), Column S (Deductions).",
-                autoCells: "Column R (Weighted Base Score), Column T (Final Score after deductions), Column V (Result: PASS / RETEST / REJECT).",
-                safeguards: [
-                    "Do not alter component weight formulas in Column R header definition.",
-                    "Ensure candidate ID matches the Applicant Pipeline ID exactly to preserve cross-sheet reporting."
-                ],
-                keywords: ["practical scoring", "practical", "deductions", "weighted base score", "retest", "pass", "reject", "inbox management", "calendar", "row 322"]
-            },
-            {
-                id: "bid-intake",
-                num: "04",
-                title: "Bid Intake (Connecteam)",
-                badge: "Client Input Log",
-                purpose: "Landing table for incoming client Statement of Work (SOW) bid requirements exported or synced from Connecteam, including required tools, tier demands, budget, and timezones.",
-                steps: [
-                    "Paste new client SOW requests or sync form entries starting at Row 4.",
-                    "Ensure Client Name, Target Tier, Required Software Tools, and Target Hourly Budget are populated.",
-                    "Verify required skills match standard tag formats (e.g., 'HubSpot, Slack, Google Workspace')."
-                ],
-                manualCells: "All columns (Row 4 downwards) are manual/synced input rows.",
-                autoCells: "None (Data intake tab).",
-                safeguards: [
-                    "PRE-GO-LIVE REQUIREMENT: Clear the placeholder 'SAMPLE - Bidder A / Sample Client' row before going live.",
-                    "Ensure client name string formatting is clean (avoid trailing spaces) for smooth Bid Matcher lookups."
-                ],
-                keywords: ["bid intake", "connecteam", "client sow", "sow", "requirements", "budget", "tools", "sample data", "bidder"]
-            },
-            {
-                id: "bid-matcher",
-                num: "05",
-                title: "Post-Close Bid Matcher",
-                badge: "188 Active Formulas",
-                purpose: "Algorithms compare active bench candidates against specific post-close client SOW requirements. Scores tool alignment, tier compatibility, rate fit, and availability to rank top recommended VEAs.",
-                steps: [
-                    "Select or enter target Client / SOW Name in Cell C4.",
-                    "Review auto-populated SOW requirements summarized in Section 1 (Rows 6 to 12).",
-                    "Examine Results Table starting at Row 16 to inspect composite match scores and candidate rankings.",
-                    "Select top-ranked VEA for client assignment."
-                ],
-                manualCells: "Cell C4 (Client SOW Selector).",
-                autoCells: "Rows 6–12 (Extracted SOW Params), Columns A to N starting at Row 16 (Composite scores, match rankings, recommendation badges).",
-                safeguards: [
-                    "CRITICAL: Lookups require an exact text match with Bid Intake. Ensure Cell C4 uses valid client name strings.",
-                    "Do not modify composite score weightings in formula headers unless re-calibrating business matching criteria."
-                ],
-                keywords: ["bid matcher", "post-close", "c4", "composite score", "match ranking", "tool alignment", "vea lookup", "recommendation"]
-            },
-            {
-                id: "bench-roster",
-                num: "06",
-                title: "Active Bench Roster",
-                badge: "48 Active Formulas",
-                purpose: "Tracks all vetted, active VEAs currently on the bench available for deployment. Calculates billing rates, pay floor structures, estimated monthly billing, and net gross margins based on Tier configuration.",
-                steps: [
-                    "Add newly passed VEAs from Practical Scoring to roster (Rows 5–16).",
-                    "Assign Tier status in Column G.",
-                    "Watch Columns H, I, J, K automatically populate VEA Pay Rate, Client Billing Rate, Estimated Monthly Billing, and Net Margin."
-                ],
-                manualCells: "Columns A to G (VEA Name, Primary Skills, Status, Assigned Tier).",
-                autoCells: "Columns H to K (VEA Pay Rate, Client Billing Rate, Est. Monthly Billing, Est. Monthly Margin) pulling dynamically from Rate Card.",
-                safeguards: [
-                    "Verify Tier assignment matches Rate Card tiers (Tier 1, Tier 2, Tier 3) to prevent rate lookup errors.",
-                    "Update candidate status immediately when placed with a client to keep bench capacity accurate."
-                ],
-                keywords: ["bench roster", "active bench", "vea pay rate", "client billing rate", "monthly billing", "margin", "placement"]
-            },
-            {
-                id: "discovery-matcher",
-                num: "07",
-                title: "Live Discovery Call Matcher",
-                badge: "121 Active Formulas",
-                purpose: "Designed for live sales/discovery calls. Allows Account Managers to input real-time client preferences and instantly see the top 3 available candidate matches on screen.",
-                steps: [
-                    "Input live discovery parameters in top control cells (Tier Needed, Required Tools, Max Budget).",
-                    "Read top match cards instantly generated in Rows 14–25.",
-                    "Present candidate profile metrics (WPM, Practical Score, Availability) directly to client during the call."
-                ],
-                manualCells: "Top Filter Controls (Tier Selector, Tool Checklist, Hourly Budget limit).",
-                autoCells: "Rows 14–25 (Dynamic ranking list, Tool match %, Availability Fit, Final Recommendation Rank).",
-                safeguards: [
-                    "Do not alter ranking formula thresholds during a live client call.",
-                    "Reset filter controls back to default after call ends."
-                ],
-                keywords: ["discovery matcher", "live call", "sales matcher", "real-time match", "top 3 candidates", "client call"]
-            },
-            {
-                id: "rate-card",
-                num: "08",
-                title: "Rate Card & Financial Model",
-                badge: "27 Active Formulas",
-                purpose: "Defines official pricing tiers, VEA pay floors, client hourly rates, markup logic (standard 80% markup), gross margins, and placement fee structures across Tier 1, Tier 2, and Tier 3.",
-                steps: [
-                    "Review pricing structures per Tier (Tier 1 Entry/Standard, Tier 2 Advanced, Tier 3 Executive/Specialized).",
-                    "Modify base VEA pay floors only if approved by executive leadership.",
-                    "Observe auto-calculated Client Billing Rates and Gross Margin percentages."
-                ],
-                manualCells: "Base VEA Pay Floors and Target Markup Percentages.",
-                autoCells: "Columns C through G (Client Billing Rates, Hourly Margins, Margin %, Estimated Monthly Billing per VEA).",
-                safeguards: [
-                    "DO NOT manually edit Client Billing Rates; they are locked to auto-calculate based on base pay floor + target markup.",
-                    "Changes made here immediately trickle down to Active Bench Roster and Matcher sheets."
-                ],
-                keywords: ["rate card", "financial model", "markup", "margin", "tier 1", "tier 2", "tier 3", "pay floor", "billing rate"]
-            },
-            {
-                id: "screening-config",
-                num: "09",
-                title: "Screening Config",
-                badge: "Answer Key & Thresholds",
-                purpose: "Contains master grading answer keys, passing thresholds (e.g., minimum WPM = 50, minimum score = 80%), and regex patterns used by automated formulas on the Pipeline sheet.",
-                steps: [
-                    "Update correct answer options for Q1 through Q5 if screening quiz questions change.",
-                    "Adjust minimum required typing WPM threshold if recruitment criteria shift."
-                ],
-                manualCells: "Answer Key values, Minimum Passing Score, Minimum WPM threshold.",
-                autoCells: "None (Configuration Master Tab).",
-                safeguards: [
-                    "Ensure text formatting in answer keys matches candidate form choices letter-for-letter.",
-                    "Never leave answer key cells blank; blank cells will cause all candidates to fail auto-grading."
-                ],
-                keywords: ["screening config", "answer key", "thresholds", "wpm threshold", "passing score", "q1 key", "q2 key", "regex"]
-            },
-            {
-                id: "automation-config",
-                num: "10",
-                title: "Automation Config",
-                badge: "Script Master Settings",
-                purpose: "Central parameter store for the Google Apps Script engine. Stores DRY_RUN toggles, admin notification emails, Google Drive Folder IDs, and execution controls without requiring code edits.",
-                steps: [
-                    "Verify SENDER_EMAIL is set to active production workspace account (`stayout.solutions@gmail.com`).",
-                    "Verify CANDIDATE_FOLDERS_PARENT_ID contains a valid Google Drive folder ID string.",
-                    "Switch DRY_RUN parameter from `TRUE` to `FALSE` when ready for full live execution."
-                ],
-                manualCells: "All parameter values in Column C.",
-                autoCells: "Status verification indicators.",
-                safeguards: [
-                    "CRITICAL: Keep DRY_RUN = TRUE during testing to prevent accidental automated email dispatch to candidates.",
-                    "Ensure folder IDs exist and have 'Editor' permissions granted to script execution email."
-                ],
-                keywords: ["automation config", "dry_run", "dry run", "sender_email", "parent_id", "google drive folder", "apps script", "api key"]
-            },
-            {
-                id: "email-templates",
-                num: "11",
-                title: "Email Templates",
-                badge: "Dynamic Mail Bodies",
-                purpose: "Stores standardized email bodies for auto-dispatches (Practical Assessment Invitation, Tier Qualification Notice, Rejection Notice, Interview Invite) complete with merge tags (`{{Name}}`, `{{ConnecteamLink}}`, `{{Tier}}`).",
-                steps: [
-                    "Select template to update (e.g., Practical Test Invite).",
-                    "Edit text while keeping template placeholders (`{{Name}}`, `{{ConnecteamLink}}`, etc.) intact.",
-                    "Test dispatch in DRY_RUN mode to inspect parsed output in execution logs."
-                ],
-                manualCells: "Template Subject lines and Template HTML/Text bodies.",
-                autoCells: "None.",
-                safeguards: [
-                    "DO NOT edit or remove curly-brace placeholders like `{{Name}}`; the script relies on exact string replacement.",
-                    "Avoid pasting formatted text with inline styling that breaks HTML email rendering."
-                ],
-                keywords: ["email templates", "templates", "placeholders", "merge tags", "practical invite", "rejection email", "interview invite"]
-            },
-            {
-                id: "automation-log",
-                num: "12",
-                title: "Automation Log",
-                badge: "Audit Trail",
-                purpose: "Automated append-only audit trail logging every script execution, automated email dispatch, folder creation, status update, or error exception.",
-                steps: [
-                    "Review logs daily or when troubleshooting candidate notification issues.",
-                    "Filter by status: 'SUCCESS', 'DRY_RUN_SKIP', or 'ERROR'.",
-                    "Examine timestamps and target email addresses for compliance audits."
-                ],
-                manualCells: "None (Populated strictly by Google Apps Script).",
-                autoCells: "All rows (Timestamp, Event Type, Target Candidate, Status, Details).",
-                safeguards: [
-                    "Do not manually delete or re-order log rows.",
-                    "If errors occur, copy exact Error Message string when requesting technical support."
-                ],
-                keywords: ["automation log", "logs", "audit trail", "error log", "timestamps", "execution history", "dry_run_skip"]
-            }
-        ];
+  <!-- Main Container -->
+  <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
 
-        let activeTabId = "overview";
-        let searchQuery = "";
+    <!-- Left Sidebar Navigation -->
+    <aside class="w-full md:w-80 flex-shrink-0 flex flex-col gap-4">
+      
+      <!-- Search Input -->
+      <div class="relative">
+        <input 
+          type="text" 
+          id="search-input" 
+          onkeyup="handleSearch()"
+          placeholder="Search keywords (e.g. #formulas, SOW, Ethernet, Wise)..." 
+          class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+        />
+        <span class="absolute right-3 top-2.5 text-slate-500 text-xs">🔍</span>
+      </div>
 
-        window.addEventListener('DOMContentLoaded', () => {
-            renderSidebar();
-            renderContent();
+      <!-- Navigation List Container -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 flex flex-col gap-1 max-h-[calc(100vh-220px)] overflow-y-auto custom-scrollbar">
+        <div id="nav-header" class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">
+          Workbook Sheets (v4.2)
+        </div>
+        <div id="nav-items-container" class="flex flex-col gap-1">
+          <!-- Dynamically Injected Nav Items -->
+        </div>
+      </div>
+    </aside>
 
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                searchQuery = e.target.value.trim().toLowerCase();
-                const clearBtn = document.getElementById('clearSearchBtn');
-                if (searchQuery.length > 0) {
-                    clearBtn.classList.remove('hidden');
-                } else {
-                    clearBtn.classList.add('hidden');
-                }
-                renderContent();
-            });
+    <!-- Right Main Content Panel -->
+    <main class="flex-1 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col min-h-[500px]">
+      <div id="content-container" class="space-y-6">
+        <!-- Dynamically Rendered Active View -->
+      </div>
+    </main>
+  </div>
 
-            document.getElementById('clearSearchBtn').addEventListener('click', () => {
-                document.getElementById('searchInput').value = '';
-                searchQuery = '';
-                document.getElementById('clearSearchBtn').classList.add('hidden');
-                renderContent();
-            });
-        });
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/50 py-4 text-center text-xs text-slate-500">
+    Stay Out Solutions (SOS) VEA Program Master System Guide • Updated 2026
+  </footer>
 
-        function renderSidebar() {
-            const container = document.getElementById("workbookTabNavs");
-            container.innerHTML = workbookTabs.map(tab => {
-                return `
-                    <button onclick="setActiveTab('${tab.id}')" data-nav-id="${tab.id}" class="nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-all text-slate-400 hover:text-slate-100 hover:bg-slate-800/60">
-                        <div class="flex items-center space-x-2 truncate">
-                            <span class="font-mono text-[10px] text-slate-500 font-bold">${tab.num}</span>
-                            <span class="truncate">${tab.title}</span>
-                        </div>
-                    </button>
-                `;
-            }).join('');
+  <script>
+    // System Data: Workbook Tabs & Document Directories
+    const workbookData = [
+      {
+        id: "tab-01",
+        num: "Tab 01",
+        title: "TOC & System Readme",
+        badge: "Navigation",
+        purpose: "Central command hub linking to all sheets, displaying real-time applicant throughput counters, and outlining operational rules.",
+        howTo: [
+          "Click quick-navigation links to jump directly to specific tabs.",
+          "Inspect active candidate throughput counts prior to daily sourcing routines."
+        ],
+        safeguards: "Do not rename sheet tab titles (breaks Apps Script lookups); keep hyperlinked anchor cells intact.",
+        keywords: ["toc", "readme", "navigation", "counters", "hub"]
+      },
+      {
+        id: "tab-02",
+        num: "Tab 02",
+        title: "Applicant Screening & Pipeline",
+        badge: "Intake Engine",
+        purpose: "Primary intake engine. Ingests monday.com submissions, auto-calculates pre-screening scores, applies pass/fail gates, and computes Tier Suggestions.",
+        howTo: [
+          "Raw applicant data auto-populates in Columns A–S.",
+          "Review auto-graded scenario scores and gate results in Columns V–AE.",
+          "Manually inspect ID and Speed test screenshot links, then set Column AB (ID & Speed Verified?) to Yes.",
+          "Review Column AF (Tier Suggestion) and select human decision in Column AG (Effective Tier)."
+        ],
+        safeguards: "Do not overwrite green formula columns (V–AC, AY–BE). Formulas are pre-dragged to Row 218; drag down to Row 1,000 when volume reaches Row 200.",
+        keywords: ["screening", "pipeline", "applicant", "formulas", "tier suggestion", "gates"]
+      },
+      {
+        id: "tab-03",
+        num: "Tab 03",
+        title: "Practical Scoring",
+        badge: "Assessment",
+        purpose: "Evaluates candidates completing practical simulation tests in Connecteam. Applies deduction penalties and calculates weighted final scores.",
+        howTo: [
+          "Locate candidate row (pre-dragged to Row 322).",
+          "Enter raw component evaluation scores (Cols C–Q) and record deductions in Column S.",
+          "Sheet auto-calculates Base Score (Col R), Final Score (Col T), and Outcome (Col V: PASS, RETEST, REJECT)."
+        ],
+        safeguards: "Do not alter component weighting formulas in Column R header. Ensure candidate IDs match the Pipeline tab exactly.",
+        keywords: ["practical", "scoring", "connecteam", "assessment", "deductions", "pass", "retest"]
+      },
+      {
+        id: "tab-04",
+        num: "Tab 04",
+        title: "Bid Intake (Connecteam)",
+        badge: "Client Demands",
+        purpose: "Landing table for incoming client Statement of Work (SOW) engagement requirements exported or synced from Connecteam.",
+        howTo: [
+          "Paste client SOW requirements starting at Row 4 (Client Name, Target Tier, Required Tools, Target Hourly Budget, Overlap Hours)."
+        ],
+        safeguards: "Pre-Go-Live requirement: delete the placeholder 'SAMPLE - Bidder A / Sample Client' row before live execution.",
+        keywords: ["bid intake", "sow", "client requirements", "connecteam", "sample"]
+      },
+      {
+        id: "tab-05",
+        num: "Tab 05",
+        title: "Post-Close Bid Matcher",
+        badge: "Matching Algo",
+        purpose: "Matching algorithm comparing active bench VEAs against post-close client SOW requirements.",
+        howTo: [
+          "Select target client SOW name in Cell C4.",
+          "Sheet extracts SOW parameters and displays a ranked composite score table starting at Row 16.",
+          "Select the #1 Single-Match Pick for client presentation."
+        ],
+        safeguards: "Lookups require an exact text match with Bid Intake. Ensure Cell C4 uses valid string selections.",
+        keywords: ["matcher", "post close", "single match", "c4", "composite score"]
+      },
+      {
+        id: "tab-06",
+        num: "Tab 06",
+        title: "Active Bench Roster",
+        badge: "Bench Management",
+        purpose: "Tracks all vetted, active VEAs on the bench available for deployment.",
+        howTo: [
+          "Add passed candidates in Rows 5–16.",
+          "Input Candidate ID, Name, Primary Tools, and Assigned Tier (Col G).",
+          "Columns H–K automatically pull VEA Pay Rate, Client Billing Rate, Monthly Billing, and Net Margin from Rate Card.",
+          "Set Connecteam Pairing Status to Available for Single-Match."
+        ],
+        safeguards: "Ensure assigned Tier matches official Rate Card nomenclature (Tier 1, Tier 2, Tier 3). Update status immediately upon client placement.",
+        keywords: ["bench", "roster", "vea", "available", "active", "margin"]
+      },
+      {
+        id: "tab-07",
+        num: "Tab 07",
+        title: "Live Discovery Call Matcher",
+        badge: "Sales Tool",
+        purpose: "Interactive sales tool designed for Account Managers to use during live 10-minute Discovery Calls.",
+        howTo: [
+          "Input live client parameters in top filter control cells (Target Tier, Required Tools, Max Budget).",
+          "Sheet dynamically generates top 3 available candidate match cards in Rows 14–25."
+        ],
+        safeguards: "Do not alter formula thresholds during a live client call. Reset filters back to default after the call ends.",
+        keywords: ["discovery call", "live matcher", "sales", "cards", "top 3"]
+      },
+      {
+        id: "tab-08",
+        num: "Tab 08",
+        title: "Rate Card & Financial Model",
+        badge: "Financial Engine",
+        purpose: "Master financial model defining pricing tiers, VEA pay floors, client billing rates, markup percentages (standard 80%), gross margins, and placement fees.",
+        howTo: [
+          "Review financial parameters across Tiers 1–3.",
+          "Modify base pay floors only with executive approval."
+        ],
+        safeguards: "Client billing rates are locked to auto-calculate via `= VEA_Pay * (1 + 80%)`. Never type flat numbers over billing rate formulas.",
+        keywords: ["rate card", "financial model", "markup", "margin", "placement fee", "billing rate"]
+      },
+      {
+        id: "tab-09",
+        num: "Tab 09",
+        title: "Screening Config",
+        badge: "Config",
+        purpose: "Master configuration tab holding grading answer keys, passing thresholds, and regex parsing rules.",
+        howTo: [
+          "Update answer option keys for scenario questions Q1–Q5 if pre-screening form questions change."
+        ],
+        safeguards: "Text formatting in answer keys must match candidate form selections letter-for-letter. Blank key cells cause candidates to fail.",
+        keywords: ["screening config", "answer keys", "regex", "thresholds"]
+      },
+      {
+        id: "tab-10",
+        num: "Tab 10",
+        title: "Automation Config",
+        badge: "Script Config",
+        purpose: "Central parameter store for the Google Apps Script automation engine.",
+        howTo: [
+          "Update parameter values in Column C.",
+          "Set SENDER_EMAIL to stayout.solutions@gmail.com.",
+          "Confirm CANDIDATE_FOLDERS_PARENT_ID contains valid Drive folder ID.",
+          "Toggle DRY_RUN from TRUE to FALSE when going live."
+        ],
+        safeguards: "Keep DRY_RUN = TRUE during testing to prevent accidental email dispatches.",
+        keywords: ["automation config", "dry run", "folder id", "sender email", "apps script"]
+      },
+      {
+        id: "tab-11",
+        num: "Tab 11",
+        title: "Email Templates",
+        badge: "Templates",
+        purpose: "Stores standardized email subject lines and HTML/text bodies for automated dispatches.",
+        howTo: [
+          "Edit subject lines or body text for dispatches."
+        ],
+        safeguards: "Never alter or remove curly-brace merge placeholders ({{Name}}, {{ConnecteamLink}}, {{MeetLink}}).",
+        keywords: ["email templates", "merge tags", "placeholders", "dispatch"]
+      },
+      {
+        id: "tab-12",
+        num: "Tab 12",
+        title: "Automation Log",
+        badge: "Audit Trail",
+        purpose: "Append-only audit trail automatically populated by Google Apps Script.",
+        howTo: [
+          "Inspect logs daily to verify script executions, email dispatches, folder creation events, or error exceptions."
+        ],
+        safeguards: "Do not manually delete or reorder log rows. Copy exact error message strings when requesting technical support.",
+        keywords: ["automation log", "audit trail", "errors", "dispatches"]
+      }
+    ];
+
+    const docDirectoryData = [
+      {
+        id: "doc-01",
+        num: "DOC-01",
+        title: "Master Document Navigation Directory",
+        badge: "Matrix",
+        purpose: "Interactive directory mapping all 20+ operational documents, templates, owners, and trigger stages across sales, vetting, contracting, and deployment.",
+        keywords: ["documents", "templates", "matrix", "msa", "sow", "ica", "nda", "playbook"]
+      },
+      {
+        id: "doc-02",
+        num: "DOC-02",
+        title: "5-Step Candidate Lifecycle & Vetting",
+        badge: "SOP Vetting Rules",
+        purpose: "Complete operational manual for candidate intake, Step 1 baseline gates, Step 2 Connecteam practical testing, Step 3 interview, 48h onboarding, and Tier 3 non-profit routing.",
+        keywords: ["5-step", "vetting", "practical assessment", "connecteam", "interview", "tier 3", "non-profit", "wired ethernet"]
+      },
+      {
+        id: "doc-03",
+        num: "DOC-03",
+        title: "Contracting, Financials & Rate Card",
+        badge: "Financial Model",
+        purpose: "Detailed pricing tiers ($4, $6-8, $8-10), 80% markup logic, $84.30 Placement Fee build-up, 6-month pay progression, and Wise biweekly payout mechanics.",
+        keywords: ["rate card", "markup", "placement fee", "pay progression", "wise", "billing", "wave", "msa terms"]
+      }
+    ];
+
+    let currentMainView = 'sheets'; // 'sheets' or 'docs'
+    let activeItemId = 'tab-01';
+
+    function switchMainView(view) {
+      currentMainView = view;
+      const sheetsBtn = document.getElementById('view-sheets-btn');
+      const docsBtn = document.getElementById('view-docs-btn');
+      const navHeader = document.getElementById('nav-header');
+
+      if (view === 'sheets') {
+        sheetsBtn.className = "px-3 py-1.5 rounded-md text-white bg-sky-600 transition-all";
+        docsBtn.className = "px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all";
+        navHeader.innerText = "Workbook Sheets (v4.2)";
+        activeItemId = 'tab-01';
+      } else {
+        docsBtn.className = "px-3 py-1.5 rounded-md text-white bg-sky-600 transition-all";
+        sheetsBtn.className = "px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all";
+        navHeader.innerText = "Document Directory & SOPs";
+        activeItemId = 'doc-01';
+      }
+
+      renderNavItems();
+      renderContent();
+    }
+
+    function renderNavItems(filter = '') {
+      const container = document.getElementById('nav-items-container');
+      const items = currentMainView === 'sheets' ? workbookData : docDirectoryData;
+      
+      const filtered = items.filter(item => {
+        const text = `${item.num} ${item.title} ${item.keywords.join(' ')}`.toLowerCase();
+        return text.includes(filter.toLowerCase());
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="p-3 text-xs text-slate-500 italic">No matching topics found.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        const isActive = item.id === activeItemId;
+        return `
+          <button 
+            onclick="selectItem('${item.id}')"
+            class="w-full text-left px-3 py-2.5 rounded-xl transition-all flex items-center justify-between group ${
+              isActive 
+                ? 'bg-sky-600/20 border border-sky-500/40 text-white font-medium' 
+                : 'hover:bg-slate-800/60 text-slate-400 hover:text-slate-200'
+            }"
+          >
+            <div class="flex flex-col truncate">
+              <span class="text-[10px] text-slate-500 group-hover:text-slate-400 uppercase tracking-wider">${item.num}</span>
+              <span class="text-xs truncate font-semibold">${item.title}</span>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/50">${item.badge}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectItem(id) {
+      activeItemId = id;
+      renderNavItems(document.getElementById('search-input').value);
+      renderContent();
+    }
+
+    function handleSearch() {
+      const query = document.getElementById('search-input').value;
+      renderNavItems(query);
+    }
+
+    function renderContent() {
+      const container = document.getElementById('content-container');
+      
+      if (currentMainView === 'sheets') {
+        const sheet = workbookData.find(s => s.id === activeItemId) || workbookData[0];
+        container.innerHTML = `
+          <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">${sheet.num} Reference</span>
+              <h2 class="text-2xl font-extrabold text-white mt-0.5">${sheet.title}</h2>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">${sheet.badge}</span>
+          </div>
+
+          <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-4">
+            <h3 class="text-xs font-bold text-slate-400 uppercase mb-1">Primary Purpose</h3>
+            <p class="text-sm text-slate-200 leading-relaxed">${sheet.purpose}</p>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">How to Utilize & Navigate</h3>
+            <ul class="space-y-2">
+              ${sheet.howTo.map(step => `
+                <li class="flex items-start gap-2 text-xs text-slate-300">
+                  <span class="text-sky-400 font-bold mt-0.5">•</span>
+                  <span>${step}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
+            <h3 class="text-xs font-bold text-amber-400 uppercase mb-1 flex items-center gap-1.5">
+              <span>⚠️</span> Operational Safeguards & Formula Protection
+            </h3>
+            <p class="text-xs text-amber-200/90 leading-relaxed">${sheet.safeguards}</p>
+          </div>
+        `;
+      } else {
+        if (activeItemId === 'doc-01') {
+          container.innerHTML = `
+            <div class="border-b border-slate-800 pb-4">
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Directory</span>
+              <h2 class="text-2xl font-extrabold text-white mt-0.5">Master Document Navigation Directory</h2>
+              <p class="text-xs text-slate-400 mt-1">Cross-reference all 20+ operational templates and documents across every workflow phase.</p>
+            </div>
+
+            <div class="overflow-x-auto custom-scrollbar">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-950 text-sky-400 font-bold border-b border-slate-800">
+                    <th class="p-2.5">Phase</th>
+                    <th class="p-2.5">Document Title</th>
+                    <th class="p-2.5">Owner</th>
+                    <th class="p-2.5">Action / Purpose</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                  <tr><td class="p-2.5 font-semibold text-slate-400">Sales Lead</td><td class="p-2.5 font-medium text-white">Client Intake Questionnaire</td><td class="p-2.5">Client</td><td class="p-2.5">Self-serve intake populates monday.com</td></tr>
+                  <tr><td class="p-2.5 font-semibold text-slate-400">Discovery Call</td><td class="p-2.5 font-medium text-white">Discovery Call Playbook / Cheat Sheet</td><td class="p-2.5">Account Manager</td><td class="p-2.5">Guides 15m call, Core 5 questions, objections</td></tr>
+                  <tr><td class="p-2.5 font-semibold text-slate-400">Client MSA</td><td class="p-2.5 font-medium text-white">Master Services Agreement (MSA)</td><td class="p-2.5">AM / Client</td><td class="p-2.5">Master legal contract, billing terms, non-circumvention</td></tr>
+                  <tr><td class="p-2.5 font-semibold text-slate-400">Placement SOW</td><td class="p-2.5 font-medium text-white">Statement of Work (SOW)</td><td class="p-2.5">AM / Client</td><td class="p-2.5">Task scope, 10 hr/wk floor, 30-day term, $84.30 fee</td></tr>
+                  <tr><td class="p-2.5 font-semibold text-slate-400">Contractor ICA</td><td class="p-2.5 font-medium text-white">Independent Contractor Agreement</td><td class="p-2.5">Candidate / SOS</td><td class="p-2.5">IC status, Ethernet mandate, Wise payouts</td></tr>
+                  <tr><td class="p-2.5 font-semibold text-slate-400">Coaching</td><td class="p-2.5 font-medium text-white">Coaching & Escalation Log</td><td class="p-2.5">Account Manager</td><td class="p-2.5">Triggered 30-min unpaid coaching, performance checks</td></tr>
+                </tbody>
+              </table>
+            </div>
+          `;
+        } else if (activeItemId === 'doc-02') {
+          container.innerHTML = `
+            <div class="border-b border-slate-800 pb-4">
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">SOP Manual</span>
+              <h2 class="text-2xl font-extrabold text-white mt-0.5">5-Step Candidate Lifecycle & Vetting Rules</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-2 text-center text-xs">
+              <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 1</div><div class="text-[11px] text-slate-300">Baseline Gate</div></div>
+              <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 2</div><div class="text-[11px] text-slate-300">Practical Test</div></div>
+              <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 3</div><div class="text-[11px] text-slate-300">Soft Skills Call</div></div>
+              <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 4</div><div class="text-[11px] text-slate-300">48h Onboarding</div></div>
+              <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 5</div><div class="text-[11px] text-slate-300">Bench Entry</div></div>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-300">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <h4 class="font-bold text-white mb-1">Key Vetting Safeguards:</h4>
+                <ul class="list-disc pl-4 space-y-1 text-slate-400">
+                  <li><strong class="text-slate-200">Wired Ethernet Mandate:</strong> Wi-Fi is strictly prohibited as a primary connection. Physical Ethernet cable required.</li>
+                  <li><strong class="text-slate-200">Scope Discipline Rule:</strong> Guessing or fixing errors without asking results in immediate test failure. Flagging & escalating is required.</li>
+                  <li><strong class="text-slate-200">Tier 3 Exception:</strong> Tier 3 Non-Profit Specialists bypass Step 2 Connecteam practical testing because "they come in trained."</li>
+                </ul>
+              </div>
+            </div>
+          `;
+        } else {
+          container.innerHTML = `
+            <div class="border-b border-slate-800 pb-4">
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Financial Model</span>
+              <h2 class="text-2xl font-extrabold text-white mt-0.5">Rate Card, Financials & Payout Mechanics</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <h4 class="text-xs font-bold text-sky-400 uppercase">Tier 1 — General Admin</h4>
+                <div class="text-2xl font-black text-white mt-1">$7.20 <span class="text-xs font-normal text-slate-400">/hr client</span></div>
+                <div class="text-xs text-slate-400 mt-1">VEA Pay Floor: $4.00/hr</div>
+                <div class="text-xs text-slate-500 mt-0.5">Markup: 80% ($3.20/hr margin)</div>
+              </div>
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <h4 class="text-xs font-bold text-sky-400 uppercase">Tier 2 — Specialized</h4>
+                <div class="text-2xl font-black text-white mt-1">$10.80 - $14.40 <span class="text-xs font-normal text-slate-400">/hr</span></div>
+                <div class="text-xs text-slate-400 mt-1">VEA Pay Floor: $6.00 - $8.00/hr</div>
+                <div class="text-xs text-slate-500 mt-0.5">Markup: 80%</div>
+              </div>
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <h4 class="text-xs font-bold text-sky-400 uppercase">Tier 3 — Non-Profit</h4>
+                <div class="text-2xl font-black text-white mt-1">$14.40 - $18.00 <span class="text-xs font-normal text-slate-400">/hr</span></div>
+                <div class="text-xs text-slate-400 mt-1">VEA Pay Floor: $8.00 - $10.00/hr</div>
+                <div class="text-xs text-slate-500 mt-0.5">Markup: 80%</div>
+              </div>
+            </div>
+
+            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+              <h4 class="font-bold text-white">Financial Standards:</h4>
+              <p>• <strong class="text-slate-200">Placement Fee:</strong> $84.30 one-time fee per placement (covers 5.3h screening + 0.75h CEO matching).</p>
+              <p>• <strong class="text-slate-200">Payouts:</strong> Biweekly on Wise with 10-day offset. Timesheets lock Friday 3:00 PM PST.</p>
+            </div>
+          `;
         }
+      }
+    }
 
-        function setActiveTab(id) {
-            activeTabId = id;
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                const navId = btn.getAttribute('data-nav-id');
-                if (navId === id) {
-                    btn.className = "nav-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all bg-sky-500/20 text-sky-400 border border-sky-500/30";
-                } else {
-                    btn.className = "nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all text-slate-400 hover:text-slate-100 hover:bg-slate-800/60";
-                }
-            });
-            renderContent();
-            document.getElementById('mainContent').scrollTop = 0;
-        }
-
-        function quickSearch(tag) {
-            const input = document.getElementById('searchInput');
-            input.value = tag;
-            searchQuery = tag.toLowerCase();
-            document.getElementById('clearSearchBtn').classList.remove('hidden');
-            renderContent();
-        }
-
-        function renderContent() {
-            const container = document.getElementById("contentDisplay");
-
-            if (searchQuery.length > 0) {
-                renderSearchResults(container);
-                return;
-            }
-
-            if (activeTabId === "overview") {
-                renderOverview(container);
-                return;
-            }
-
-            if (activeTabId === "go-live") {
-                renderGoLive(container);
-                return;
-            }
-
-            const tabData = workbookTabs.find(t => t.id === activeTabId);
-            if (tabData) {
-                renderTabDetail(container, tabData);
-            }
-        }
-
-        function renderOverview(container) {
-            container.innerHTML = `
-                <div class="space-y-6">
-                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-sky-950 via-slate-900 to-slate-900 border border-slate-800 p-6 lg:p-8 shadow-2xl">
-                        <div class="space-y-3">
-                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold">
-                                100% Native Google Workspace Engine
-                            </span>
-                            <h2 class="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
-                                SOS VEA Recruitment Tracker Knowledge Base
-                            </h2>
-                            <p class="text-slate-300 text-xs lg:text-sm leading-relaxed max-w-3xl">
-                                Welcome to the official operational manual for the SOS VEA Recruitment & Matching Tracker (v4.2). This application guides team members through data entry rules, formula safeguards, client bid matching, and pre-go-live audits.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Visual Cell Color Standards -->
-                    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-4">
-                        <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                            <span>Workbook Cell Color-Coding Standards</span>
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
-                                <div class="font-bold text-white flex items-center space-x-2">
-                                    <span class="w-3 h-3 rounded bg-slate-800 border border-slate-600 inline-block"></span>
-                                    <span>White / Dark Gray Cells</span>
-                                </div>
-                                <p class="text-slate-400 text-[11px]"><strong>Manual Entry:</strong> Safe to type candidate metadata, raw assessment links, or notes.</p>
-                            </div>
-
-                            <div class="bg-slate-950 p-4 rounded-xl border border-emerald-900/50 space-y-1">
-                                <div class="font-bold text-emerald-400 flex items-center space-x-2">
-                                    <span class="w-3 h-3 rounded bg-emerald-950 border border-emerald-500 inline-block"></span>
-                                    <span>Soft Emerald / Green Cells</span>
-                                </div>
-                                <p class="text-slate-400 text-[11px]"><strong class="text-rose-400">DO NOT TOUCH:</strong> Contains automated formulas, regex scoring parsers, and tier gates.</p>
-                            </div>
-
-                            <div class="bg-slate-950 p-4 rounded-xl border border-sky-900/50 space-y-1">
-                                <div class="font-bold text-sky-400 flex items-center space-x-2">
-                                    <span class="w-3 h-3 rounded bg-sky-950 border border-sky-500 inline-block"></span>
-                                    <span>Soft Blue / Purple Cells</span>
-                                </div>
-                                <p class="text-slate-400 text-[11px]"><strong>Account Manager Actions:</strong> Dropdowns for effective tier decisions and pipeline progression.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderGoLive(container) {
-            container.innerHTML = `
-                <div class="space-y-6">
-                    <div class="border-b border-slate-800 pb-4">
-                        <h2 class="text-2xl font-extrabold text-white">Pre-Go-Live Audit Checklist</h2>
-                        <p class="text-xs text-slate-400 mt-1">Complete these required verification items before setting the system to live production.</p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="flex items-start space-x-3 bg-slate-900/80 border border-slate-800 p-4 rounded-2xl cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="mt-1 rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0 w-4 h-4">
-                            <div class="space-y-1">
-                                <span class="font-bold text-xs text-slate-200 block">1. Clear Sample Bid Rows</span>
-                                <p class="text-[11px] text-slate-400">Open <strong class="text-slate-300">Bid Intake (Connecteam)</strong> sheet and delete Row 4 ('SAMPLE - Bidder A / Sample Client'). Clear cell C4 on <strong class="text-slate-300">Post-Close Bid Matcher</strong>.</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start space-x-3 bg-slate-900/80 border border-slate-800 p-4 rounded-2xl cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="mt-1 rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0 w-4 h-4">
-                            <div class="space-y-1">
-                                <span class="font-bold text-xs text-slate-200 block">2. Verify Candidate Drive Parent Folder ID</span>
-                                <p class="text-[11px] text-slate-400">On <strong class="text-slate-300">Automation Config</strong> sheet, confirm parameter <code class="text-amber-400">CANDIDATE_FOLDERS_PARENT_ID</code> points to your active destination Google Drive folder ID.</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start space-x-3 bg-slate-900/80 border border-slate-800 p-4 rounded-2xl cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="mt-1 rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0 w-4 h-4">
-                            <div class="space-y-1">
-                                <span class="font-bold text-xs text-slate-200 block">3. Toggle DRY_RUN Parameter to FALSE</span>
-                                <p class="text-[11px] text-slate-400">On <strong class="text-slate-300">Automation Config</strong> sheet, switch <code class="text-amber-400">DRY_RUN</code> from <code class="text-amber-300">TRUE</code> to <code class="text-emerald-400 font-bold">FALSE</code> when ready to trigger live emails.</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start space-x-3 bg-slate-900/80 border border-slate-800 p-4 rounded-2xl cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="mt-1 rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0 w-4 h-4">
-                            <div class="space-y-1">
-                                <span class="font-bold text-xs text-slate-200 block">4. Formula Extension Check (Pipeline Row 200 Milestone)</span>
-                                <p class="text-[11px] text-slate-400">Formulas are pre-dragged to Row 218 on Pipeline and Row 322 on Practical Scoring. When candidate volume reaches Row 200, drag formula block down to Row 1,000.</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderTabDetail(container, tab) {
-            container.innerHTML = `
-                <div class="space-y-6">
-                    <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
-                        <div>
-                            <span class="text-[10px] font-mono text-slate-500 font-bold">TAB ${tab.num}</span>
-                            <h2 class="text-2xl font-extrabold text-white tracking-tight">${tab.title}</h2>
-                        </div>
-                        <span class="text-xs bg-slate-800 text-slate-300 border border-slate-700 px-3 py-1 rounded-full font-mono font-semibold">${tab.badge}</span>
-                    </div>
-
-                    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-2">
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Sheet Purpose & Operational Function</h3>
-                        <p class="text-slate-200 text-xs leading-relaxed">${tab.purpose}</p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">How to Utilize (Step-by-Step SOP)</h3>
-                        <div class="space-y-2">
-                            ${tab.steps.map((step, i) => `
-                                <div class="flex items-start space-x-3 bg-slate-900/40 border border-slate-800 p-3.5 rounded-xl text-xs">
-                                    <span class="w-5 h-5 rounded bg-slate-800 text-sky-400 font-bold font-mono text-[11px] flex items-center justify-center shrink-0 border border-slate-700">${i + 1}</span>
-                                    <span class="text-slate-300 leading-relaxed pt-0.5">${step}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 space-y-2">
-                            <span class="font-bold text-slate-300 uppercase tracking-wider text-[10px] block">Manual Input Cells</span>
-                            <p class="text-slate-400 font-mono text-[11px] bg-slate-950 p-2.5 rounded-xl border border-slate-800">${tab.manualCells}</p>
-                        </div>
-                        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 space-y-2">
-                            <span class="font-bold text-emerald-400 uppercase tracking-wider text-[10px] block">Automated Formula Cells</span>
-                            <p class="text-emerald-300/90 font-mono text-[11px] bg-slate-950 p-2.5 rounded-xl border border-emerald-950/80">${tab.autoCells}</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-rose-950/20 border border-rose-900/40 rounded-2xl p-5 space-y-2">
-                        <h3 class="text-xs font-bold text-rose-400 uppercase tracking-wider">Critical Operational Safeguards</h3>
-                        <ul class="space-y-1.5 text-xs text-slate-300">
-                            ${tab.safeguards.map(guard => `
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-rose-500 font-bold">•</span>
-                                    <span class="leading-relaxed">${guard}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderSearchResults(container) {
-            const matches = workbookTabs.filter(tab => {
-                const text = `${tab.title} ${tab.purpose} ${tab.keywords.join(' ')} ${tab.steps.join(' ')} ${tab.manualCells} ${tab.autoCells}`.toLowerCase();
-                return text.includes(searchQuery);
-            });
-
-            if (matches.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-16 space-y-3">
-                        <h3 class="text-base font-bold text-slate-300">No documentation matched your query</h3>
-                        <p class="text-xs text-slate-500">Try searching keywords like 'formulas', 'dry_run', 'connecteam', 'stalled', or 'practical'.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = `
-                <div class="space-y-4">
-                    <div class="border-b border-slate-800 pb-3">
-                        <h2 class="text-lg font-bold text-white">Search Results</h2>
-                        <p class="text-xs text-slate-400">Found ${matches.length} section(s) matching "<span class="text-amber-400">${searchQuery}</span>"</p>
-                    </div>
-
-                    <div class="space-y-3">
-                        ${matches.map(tab => `
-                            <div onclick="document.getElementById('searchInput').value=''; searchQuery=''; renderContent(); setActiveTab('${tab.id}');" class="bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 rounded-2xl p-4 cursor-pointer transition-all space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-bold text-slate-200 text-sm">${tab.title}</span>
-                                    <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">${tab.badge}</span>
-                                </div>
-                                <p class="text-xs text-slate-400 line-clamp-2">${tab.purpose}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-    </script>
+    // Initialize Page
+    switchMainView('sheets');
+  </script>
 </body>
 </html>
