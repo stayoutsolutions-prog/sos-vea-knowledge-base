@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<html lang="en" class="h-full bg-white text-slate-800">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS VEA Master Knowledge Base & Document Navigation Guide (v2)</title>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
           colors: {
             brand: {
-              50: '#f0f7ff', 100: '#e0effe', 500: '#0284c7', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e'
+              DEFAULT: '#023137',
+              dark: '#012024',
+              light: '#05535c',
+              bg: '#e6f0f1',
             }
           }
         }
@@ -20,49 +32,53 @@
     }
   </script>
   <style>
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #023137;
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
-<body class="h-full font-sans antialiased bg-slate-950 text-slate-100 flex flex-col custom-scrollbar overflow-x-hidden">
+<body class="h-full antialiased bg-white flex flex-col custom-scrollbar overflow-x-hidden">
 
   <!-- Header -->
-  <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+  <header class="bg-white border-b-2 border-[#023137]/15 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-sky-500/20 border border-sky-500/40 flex items-center justify-center font-black text-sky-400 text-sm">
+        <div class="w-11 h-11 rounded-xl bg-[#023137] flex items-center justify-center font-black text-white text-base shadow-md">
           SOS
         </div>
         <div>
-          <h1 class="text-base font-bold text-white leading-tight">SOS VEA Program Master KB</h1>
-          <p class="text-[11px] text-slate-400">v4.2 Operational Manual & Document Navigation Guide (v2)</p>
+          <h1 class="text-lg font-bold text-[#023137] leading-tight">SOS VEA Program Master KB</h1>
+          <p class="text-xs text-slate-600 font-medium">Operational Manual & Document Navigation Guide (v2)</p>
         </div>
       </div>
 
       <!-- Module Switcher Tabs -->
-      <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs font-semibold overflow-x-auto custom-scrollbar">
-        <button id="view-sheets-btn" onclick="switchMainView('sheets')" class="px-3 py-1.5 rounded-md text-white bg-sky-600 transition-all whitespace-nowrap">
+      <div class="flex items-center bg-slate-100 p-1.5 rounded-xl border border-slate-300 text-xs font-semibold overflow-x-auto custom-scrollbar">
+        <button id="view-sheets-btn" onclick="switchMainView('sheets')" class="px-3.5 py-2 rounded-lg text-white bg-[#023137] shadow-sm transition-all whitespace-nowrap">
           📊 Sheets Workbook (12 Tabs)
         </button>
-        <button id="view-drive-btn" onclick="switchMainView('drive')" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all whitespace-nowrap">
+        <button id="view-drive-btn" onclick="switchMainView('drive')" class="px-3.5 py-2 rounded-lg text-slate-700 hover:text-[#023137] hover:bg-slate-200 transition-all whitespace-nowrap">
           📁 Drive Folders
         </button>
-        <button id="view-matrix-btn" onclick="switchMainView('matrix')" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all whitespace-nowrap">
+        <button id="view-matrix-btn" onclick="switchMainView('matrix')" class="px-3.5 py-2 rounded-lg text-slate-700 hover:text-[#023137] hover:bg-slate-200 transition-all whitespace-nowrap">
           📑 Document Matrix
         </button>
-        <button id="view-vetting-btn" onclick="switchMainView('vetting')" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all whitespace-nowrap">
+        <button id="view-vetting-btn" onclick="switchMainView('vetting')" class="px-3.5 py-2 rounded-lg text-slate-700 hover:text-[#023137] hover:bg-slate-200 transition-all whitespace-nowrap">
           🔄 5-Step Vetting
         </button>
-        <button id="view-rates-btn" onclick="switchMainView('rates')" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all whitespace-nowrap">
+        <button id="view-rates-btn" onclick="switchMainView('rates')" class="px-3.5 py-2 rounded-lg text-slate-700 hover:text-[#023137] hover:bg-slate-200 transition-all whitespace-nowrap">
           💰 Rates & Wise
         </button>
       </div>
 
       <!-- Root Drive Button -->
       <div class="hidden lg:flex items-center gap-2 text-xs">
-        <a href="https://drive.google.com/drive/folders/1cJw-a-gM3RGjUYsIFyBCXJlPs8lIZG0U?usp=sharing" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 font-medium transition-all">
+        <a href="https://drive.google.com/drive/folders/1cJw-a-gM3RGjUYsIFyBCXJlPs8lIZG0U?usp=sharing" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/10 border-2 border-amber-500/40 text-amber-900 font-bold hover:bg-amber-500/20 transition-all">
           <span>🔗 Workspace Drive</span>
         </a>
       </div>
@@ -70,7 +86,7 @@
   </header>
 
   <!-- Main Container -->
-  <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
+  <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
 
     <!-- Left Sidebar Navigation -->
     <aside class="w-full md:w-80 flex-shrink-0 flex flex-col gap-4">
@@ -81,25 +97,25 @@
           type="text" 
           id="search-input" 
           onkeyup="handleSearch()"
-          placeholder="Search keywords (e.g. SOW, Ethernet, Wise, Tier 3)..." 
-          class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+          placeholder="Search keywords (e.g. SOW, Ethernet, Wise)..." 
+          class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-xs font-medium text-[#023137] placeholder-slate-400 focus:outline-none focus:border-[#023137] focus:bg-white transition"
         />
-        <span class="absolute right-3 top-2.5 text-slate-500 text-xs">🔍</span>
+        <span class="absolute right-3.5 top-3.5 text-slate-400 text-sm">🔍</span>
       </div>
 
       <!-- Navigation List Container -->
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 flex flex-col gap-1 max-h-[calc(100vh-220px)] overflow-y-auto custom-scrollbar">
-        <div id="nav-header" class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">
+      <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-3 flex flex-col gap-1 max-h-[calc(100vh-230px)] overflow-y-auto custom-scrollbar shadow-sm">
+        <div id="nav-header" class="text-xs font-bold uppercase tracking-wider text-[#023137] px-3 py-1.5">
           Workbook Sheets (v4.2)
         </div>
-        <div id="nav-items-container" class="flex flex-col gap-1">
+        <div id="nav-items-container" class="flex flex-col gap-1.5">
           <!-- Dynamically Injected Nav Items -->
         </div>
       </div>
     </aside>
 
     <!-- Right Main Content Panel -->
-    <main class="flex-1 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col min-h-[500px]">
+    <main class="flex-1 bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 md:p-8 flex flex-col min-h-[550px] shadow-sm">
       <div id="content-container" class="space-y-6">
         <!-- Dynamically Rendered Active View -->
       </div>
@@ -107,7 +123,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 bg-slate-900/50 py-4 text-center text-xs text-slate-500">
+  <footer class="border-t-2 border-slate-200 bg-slate-50 py-5 text-center text-xs font-semibold text-[#023137]">
     Stay Out Solutions (SOS) VEA Program Master System Guide v2 • Updated 2026
   </footer>
 
@@ -371,8 +387,8 @@
       Object.keys(buttons).forEach(k => {
         if (buttons[k]) {
           buttons[k].className = (k === view) 
-            ? "px-3 py-1.5 rounded-md text-white bg-sky-600 transition-all whitespace-nowrap" 
-            : "px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all whitespace-nowrap";
+            ? "px-3.5 py-2 rounded-lg text-white bg-[#023137] shadow-sm transition-all whitespace-nowrap font-bold" 
+            : "px-3.5 py-2 rounded-lg text-slate-700 hover:text-[#023137] hover:bg-slate-200 transition-all whitespace-nowrap font-semibold";
         }
       });
 
@@ -416,17 +432,17 @@
           return `
             <button 
               onclick="selectItem('${item.id}')"
-              class="w-full text-left px-3 py-2.5 rounded-xl transition-all flex items-center justify-between group ${
+              class="w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-center justify-between group ${
                 isActive 
-                  ? 'bg-sky-600/20 border border-sky-500/40 text-white font-medium' 
-                  : 'hover:bg-slate-800/60 text-slate-400 hover:text-slate-200'
+                  ? 'bg-[#023137] text-white shadow-sm font-semibold' 
+                  : 'bg-white hover:bg-slate-200 text-slate-700 border border-slate-200'
               }"
             >
               <div class="flex flex-col truncate">
-                <span class="text-[10px] text-slate-500 group-hover:text-slate-400 uppercase tracking-wider">${item.num}</span>
-                <span class="text-xs truncate font-semibold">${item.title}</span>
+                <span class="text-[10px] ${isActive ? 'text-teal-200' : 'text-slate-500'} uppercase tracking-wider font-bold">${item.num}</span>
+                <span class="text-xs truncate ${isActive ? 'text-white' : 'text-[#023137]'} font-bold mt-0.5">${item.title}</span>
               </div>
-              <span class="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/50">${item.badge}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-md ${isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600 border border-slate-300'} font-medium">${item.badge}</span>
             </button>
           `;
         }).join('');
@@ -435,19 +451,19 @@
           <a 
             href="${folder.url}" 
             target="_blank"
-            class="w-full text-left px-3 py-2.5 rounded-xl transition-all flex items-center justify-between group hover:bg-slate-800/60 text-slate-300 hover:text-white"
+            class="w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-center justify-between group bg-white hover:bg-amber-50 border border-slate-200 hover:border-amber-400 shadow-sm"
           >
             <div class="flex flex-col truncate">
-              <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">${folder.num}</span>
-              <span class="text-xs truncate font-semibold">${folder.name}</span>
+              <span class="text-[10px] text-amber-800 font-extrabold uppercase tracking-wider">${folder.num}</span>
+              <span class="text-xs truncate font-bold text-[#023137] mt-0.5">${folder.name}</span>
             </div>
-            <span class="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">🔗 Open</span>
+            <span class="text-[10px] px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-900 border border-amber-500/30 font-bold">🔗 Open</span>
           </a>
         `).join('');
       } else {
         container.innerHTML = `
-          <div class="p-3 text-xs text-slate-400">
-            Navigation is active in main content view.
+          <div class="p-3 text-xs text-slate-600 font-medium">
+            Navigation controls active in main content panel.
           </div>
         `;
       }
@@ -470,63 +486,63 @@
       if (currentMainView === 'sheets') {
         const sheet = workbookData.find(s => s.id === activeItemId) || workbookData[0];
         container.innerHTML = `
-          <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
+          <div class="border-b-2 border-slate-200 pb-4 flex items-center justify-between gap-4">
             <div>
-              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">${sheet.num} Reference</span>
-              <h2 class="text-2xl font-extrabold text-white mt-0.5">${sheet.title}</h2>
+              <span class="text-xs font-bold text-[#023137] uppercase tracking-wider">${sheet.num} Reference</span>
+              <h2 class="text-2xl font-extrabold text-[#023137] mt-1">${sheet.title}</h2>
             </div>
-            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">${sheet.badge}</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#023137]/10 text-[#023137] border border-[#023137]/20">${sheet.badge}</span>
           </div>
 
-          <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-4">
-            <h3 class="text-xs font-bold text-slate-400 uppercase mb-1">Primary Purpose</h3>
-            <p class="text-sm text-slate-200 leading-relaxed">${sheet.purpose}</p>
+          <div class="bg-white border-2 border-slate-200 rounded-xl p-5 shadow-sm">
+            <h3 class="text-xs font-bold text-[#023137] uppercase tracking-wider mb-1.5">Primary Purpose</h3>
+            <p class="text-sm text-slate-700 leading-relaxed font-medium">${sheet.purpose}</p>
           </div>
 
           <div class="space-y-3">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">How to Utilize & Navigate</h3>
-            <ul class="space-y-2">
+            <h3 class="text-xs font-bold text-[#023137] uppercase tracking-wider">How to Utilize & Navigate</h3>
+            <ul class="space-y-2.5">
               ${sheet.howTo.map(step => `
-                <li class="flex items-start gap-2 text-xs text-slate-300">
-                  <span class="text-sky-400 font-bold mt-0.5">•</span>
+                <li class="flex items-start gap-2.5 text-xs text-slate-800 font-medium leading-relaxed">
+                  <span class="text-[#023137] font-black text-sm leading-none">•</span>
                   <span>${step}</span>
                 </li>
               `).join('')}
             </ul>
           </div>
 
-          <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-            <h3 class="text-xs font-bold text-amber-400 uppercase mb-1 flex items-center gap-1.5">
-              <span>⚠️</span> Operational Safeguards & Formula Protection
+          <div class="bg-amber-500/10 border-2 border-amber-500/30 rounded-xl p-5">
+            <h3 class="text-xs font-bold text-amber-900 uppercase tracking-wider mb-1.5 flex items-center gap-2">
+              <span class="text-base">⚠️</span> Operational Safeguards & Formula Protection
             </h3>
-            <p class="text-xs text-amber-200/90 leading-relaxed">${sheet.safeguards}</p>
+            <p class="text-xs text-amber-950 font-medium leading-relaxed">${sheet.safeguards}</p>
           </div>
         `;
       } else if (currentMainView === 'drive') {
         container.innerHTML = `
-          <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
+          <div class="border-b-2 border-slate-200 pb-4 flex items-center justify-between">
             <div>
-              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Google Workspace Repository</span>
-              <h2 class="text-2xl font-extrabold text-white mt-0.5">Google Drive Repositories (v2)</h2>
-              <p class="text-xs text-slate-400 mt-1">Direct access links to all 6 structured Google Drive folders in the SOS Master Workspace.</p>
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-wider">Google Workspace Repository</span>
+              <h2 class="text-2xl font-extrabold text-[#023137] mt-1">Google Drive Repositories (v2)</h2>
+              <p class="text-xs text-slate-600 mt-1 font-medium">Direct access links to all 6 structured Google Drive folders in the SOS Master Workspace.</p>
             </div>
-            <a href="https://drive.google.com/drive/folders/1cJw-a-gM3RGjUYsIFyBCXJlPs8lIZG0U?usp=sharing" target="_blank" class="px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold text-xs hover:bg-amber-500/20 transition-all">
+            <a href="https://drive.google.com/drive/folders/1cJw-a-gM3RGjUYsIFyBCXJlPs8lIZG0U?usp=sharing" target="_blank" class="px-4 py-2 rounded-xl bg-amber-500/10 border-2 border-amber-500/40 text-amber-900 font-bold text-xs hover:bg-amber-500/20 transition-all shadow-sm">
               📂 Open Root Drive
             </a>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${driveFolders.map(folder => `
-              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col justify-between space-y-3">
+              <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 flex flex-col justify-between space-y-4 shadow-sm hover:border-slate-300 transition-all">
                 <div>
                   <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">${folder.num}</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">${folder.badge}</span>
+                    <span class="text-xs font-extrabold text-amber-800 uppercase tracking-wider">${folder.num}</span>
+                    <span class="text-[10px] px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-300 text-slate-700 font-semibold">${folder.badge}</span>
                   </div>
-                  <h3 class="text-sm font-bold text-white mt-1">${folder.name}</h3>
-                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">${folder.desc}</p>
+                  <h3 class="text-sm font-bold text-[#023137] mt-2">${folder.name}</h3>
+                  <p class="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">${folder.desc}</p>
                 </div>
-                <a href="${folder.url}" target="_blank" class="w-full text-center py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold transition-all">
+                <a href="${folder.url}" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border-2 border-amber-500/30 text-amber-950 text-xs font-bold transition-all shadow-sm">
                   🔗 Launch Folder in Google Drive
                 </a>
               </div>
@@ -535,37 +551,35 @@
         `;
       } else if (currentMainView === 'matrix') {
         container.innerHTML = `
-          <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
-            <div>
-              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Master Document Directory</span>
-              <h2 class="text-2xl font-extrabold text-white mt-0.5">Master Operational Document Matrix</h2>
-              <p class="text-xs text-slate-400 mt-1">20 operational templates, legal agreements, and SOPs mapped across every lifecycle phase.</p>
-            </div>
+          <div class="border-b-2 border-slate-200 pb-4">
+            <span class="text-xs font-bold text-[#023137] uppercase tracking-wider">Master Document Directory</span>
+            <h2 class="text-2xl font-extrabold text-[#023137] mt-1">Master Operational Document Matrix</h2>
+            <p class="text-xs text-slate-600 mt-1 font-medium">20 operational templates, legal agreements, and SOPs mapped across every lifecycle phase.</p>
           </div>
 
-          <div class="overflow-x-auto custom-scrollbar">
-            <table class="w-full text-left text-xs border-collapse">
+          <div class="overflow-x-auto custom-scrollbar border-2 border-slate-200 rounded-xl">
+            <table class="w-full text-left text-xs border-collapse bg-white">
               <thead>
-                <tr class="bg-slate-950 text-sky-400 font-bold border-b border-slate-800">
-                  <th class="p-2.5">Phase</th>
-                  <th class="p-2.5">Document Title</th>
-                  <th class="p-2.5">Owner</th>
-                  <th class="p-2.5">Folder Link</th>
-                  <th class="p-2.5">Key Action / Output</th>
+                <tr class="bg-[#023137] text-white font-bold border-b border-[#023137]">
+                  <th class="p-3">Phase</th>
+                  <th class="p-3">Document Title</th>
+                  <th class="p-3">Owner</th>
+                  <th class="p-3">Folder Link</th>
+                  <th class="p-3">Key Action / Output</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tbody class="divide-y divide-slate-200 text-slate-700 font-medium">
                 ${docMatrixData.map(doc => `
-                  <tr class="hover:bg-slate-950/40">
-                    <td class="p-2.5 font-semibold text-slate-400 whitespace-nowrap">${doc.phase}</td>
-                    <td class="p-2.5 font-medium text-white">${doc.title}<div class="text-[10px] text-slate-500 font-mono">${doc.file}</div></td>
-                    <td class="p-2.5 whitespace-nowrap">${doc.owner}</td>
-                    <td class="p-2.5 whitespace-nowrap">
-                      <a href="${doc.url}" target="_blank" class="text-amber-400 hover:underline flex items-center gap-1 font-semibold">
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-3 font-bold text-slate-500 whitespace-nowrap">${doc.phase}</td>
+                    <td class="p-3 font-bold text-[#023137]">${doc.title}<div class="text-[10px] text-slate-500 font-mono font-normal mt-0.5">${doc.file}</div></td>
+                    <td class="p-3 whitespace-nowrap text-slate-600">${doc.owner}</td>
+                    <td class="p-3 whitespace-nowrap">
+                      <a href="${doc.url}" target="_blank" class="text-amber-800 hover:underline flex items-center gap-1 font-bold bg-amber-50 px-2 py-1 rounded border border-amber-200">
                         <span>📁</span> ${doc.folder.split(' ')[0]}${doc.folder.split(' ')[1]}
                       </a>
                     </td>
-                    <td class="p-2.5 text-slate-300">${doc.action}</td>
+                    <td class="p-3 text-slate-700 leading-relaxed">${doc.action}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -574,66 +588,66 @@
         `;
       } else if (currentMainView === 'vetting') {
         container.innerHTML = `
-          <div class="border-b border-slate-800 pb-4">
-            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Candidate Lifecycle</span>
-            <h2 class="text-2xl font-extrabold text-white mt-0.5">5-Step Candidate Vetting Framework</h2>
-            <p class="text-xs text-slate-400 mt-1">Strict Sequence Rule: Candidates must pass each stage in order without skipping.</p>
+          <div class="border-b-2 border-slate-200 pb-4">
+            <span class="text-xs font-bold text-[#023137] uppercase tracking-wider">Candidate Lifecycle</span>
+            <h2 class="text-2xl font-extrabold text-[#023137] mt-1">5-Step Candidate Vetting Framework</h2>
+            <p class="text-xs text-slate-600 mt-1 font-medium">Strict Sequence Rule: Candidates must pass each stage in order without skipping.</p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 text-center text-xs">
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 1</div><div class="text-[11px] text-slate-300">Baseline Gate</div></div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 2</div><div class="text-[11px] text-slate-300">Practical Test</div></div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 3</div><div class="text-[11px] text-slate-300">Soft Skills Call</div></div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 4</div><div class="text-[11px] text-slate-300">48h Training</div></div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800"><div class="font-bold text-sky-400">STEP 5</div><div class="text-[11px] text-slate-300">Bench Entry</div></div>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-center text-xs">
+            <div class="bg-white p-3 rounded-xl border-2 border-slate-200 shadow-sm"><div class="font-bold text-[#023137]">STEP 1</div><div class="text-[11px] text-slate-600 font-medium mt-0.5">Baseline Gate</div></div>
+            <div class="bg-white p-3 rounded-xl border-2 border-slate-200 shadow-sm"><div class="font-bold text-[#023137]">STEP 2</div><div class="text-[11px] text-slate-600 font-medium mt-0.5">Practical Test</div></div>
+            <div class="bg-white p-3 rounded-xl border-2 border-slate-200 shadow-sm"><div class="font-bold text-[#023137]">STEP 3</div><div class="text-[11px] text-slate-600 font-medium mt-0.5">Soft Skills Call</div></div>
+            <div class="bg-white p-3 rounded-xl border-2 border-slate-200 shadow-sm"><div class="font-bold text-[#023137]">STEP 4</div><div class="text-[11px] text-slate-600 font-medium mt-0.5">48h Training</div></div>
+            <div class="bg-white p-3 rounded-xl border-2 border-slate-200 shadow-sm"><div class="font-bold text-[#023137]">STEP 5</div><div class="text-[11px] text-slate-600 font-medium mt-0.5">Bench Entry</div></div>
           </div>
 
-          <div class="space-y-3 text-xs text-slate-300">
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-              <h4 class="font-bold text-white text-sm">Key Vetting Safeguards & Rules:</h4>
-              <p>• <strong class="text-slate-200">Wired Ethernet Mandate:</strong> Wi-Fi is strictly prohibited as a primary connection. Physical Ethernet cable required for all client work.</p>
-              <p>• <strong class="text-slate-200">Scope Discipline Rule:</strong> Guessing or fixing data errors without asking results in immediate deduction/failure. Flagging & escalating when unsure is required.</p>
-              <p>• <strong class="text-slate-200">Tier 3 Exception ("They Come In Trained"):</strong> Tier 3 Non-Profit Specialists bypass Step 2 Connecteam practical testing because they enter with verified domain expertise.</p>
-              <p>• <strong class="text-slate-200">48-Hour Training Deadline:</strong> Candidates must submit all 7 training acknowledgments within 48 hours of access or be offboarded from Connecteam.</p>
+          <div class="space-y-3 text-xs text-slate-700">
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 space-y-3 shadow-sm">
+              <h4 class="font-bold text-[#023137] text-sm">Key Vetting Safeguards & Rules:</h4>
+              <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">Wired Ethernet Mandate:</strong> Wi-Fi is strictly prohibited as a primary connection. Physical Ethernet cable required for all client work.</p>
+              <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">Scope Discipline Rule:</strong> Guessing or fixing data errors without asking results in immediate deduction/failure. Flagging & escalating when unsure is required.</p>
+              <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">Tier 3 Exception ("They Come In Trained"):</strong> Tier 3 Non-Profit Specialists bypass Step 2 Connecteam practical testing because they enter with verified domain expertise.</p>
+              <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">48-Hour Training Deadline:</strong> Candidates must submit all 7 training acknowledgments within 48 hours of access or be offboarded from Connecteam.</p>
             </div>
           </div>
         `;
       } else if (currentMainView === 'rates') {
         container.innerHTML = `
-          <div class="border-b border-slate-800 pb-4">
-            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Financial Engine</span>
-            <h2 class="text-2xl font-extrabold text-white mt-0.5">Rate Card, Financials & Wise Payouts</h2>
+          <div class="border-b-2 border-slate-200 pb-4">
+            <span class="text-xs font-bold text-[#023137] uppercase tracking-wider">Financial Engine</span>
+            <h2 class="text-2xl font-extrabold text-[#023137] mt-1">Rate Card, Financials & Wise Payouts</h2>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-              <h4 class="text-xs font-bold text-sky-400 uppercase">Tier 1 — General Admin</h4>
-              <div class="text-2xl font-black text-white mt-1">$7.20 <span class="text-xs font-normal text-slate-400">/hr client</span></div>
-              <div class="text-xs text-slate-400 mt-1">VEA Pay Floor: $4.00/hr (firm)</div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-sm">
+              <h4 class="text-xs font-bold text-[#023137] uppercase tracking-wider">Tier 1 — General Admin</h4>
+              <div class="text-2xl font-extrabold text-[#023137] mt-1.5">$7.20 <span class="text-xs font-semibold text-slate-500">/hr client</span></div>
+              <div class="text-xs text-slate-600 mt-2 font-medium">VEA Pay Floor: $4.00/hr (firm)</div>
               <div class="text-xs text-slate-500 mt-0.5">Markup: 80% ($3.20/hr margin)</div>
-              <div class="text-[11px] text-slate-400 mt-2 font-mono">Est. Monthly: $311.76/mo</div>
+              <div class="text-xs text-[#023137] mt-3 font-semibold bg-slate-100 p-2 rounded-lg text-center">Est. Monthly: $311.76/mo</div>
             </div>
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-              <h4 class="text-xs font-bold text-sky-400 uppercase">Tier 2 — Specialized</h4>
-              <div class="text-2xl font-black text-white mt-1">$10.80 - $14.40 <span class="text-xs font-normal text-slate-400">/hr</span></div>
-              <div class="text-xs text-slate-400 mt-1">VEA Pay Floor: $6.00 - $8.00/hr</div>
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-sm">
+              <h4 class="text-xs font-bold text-[#023137] uppercase tracking-wider">Tier 2 — Specialized</h4>
+              <div class="text-2xl font-extrabold text-[#023137] mt-1.5">$10.80 - $14.40 <span class="text-xs font-semibold text-slate-500">/hr</span></div>
+              <div class="text-xs text-slate-600 mt-2 font-medium">VEA Pay Floor: $6.00 - $8.00/hr</div>
               <div class="text-xs text-slate-500 mt-0.5">Markup: 80% ($4.80 - $8.40/hr)</div>
-              <div class="text-[11px] text-slate-400 mt-2 font-mono">Est. Monthly: $467.64 - $623.52/mo</div>
+              <div class="text-xs text-[#023137] mt-3 font-semibold bg-slate-100 p-2 rounded-lg text-center">Est. Monthly: $467.64 - $623.52/mo</div>
             </div>
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-              <h4 class="text-xs font-bold text-sky-400 uppercase">Tier 3 — Non-Profit</h4>
-              <div class="text-2xl font-black text-white mt-1">$14.40 - $18.00 <span class="text-xs font-normal text-slate-400">/hr</span></div>
-              <div class="text-xs text-slate-400 mt-1">VEA Pay Floor: $8.00 - $10.00/hr</div>
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-sm">
+              <h4 class="text-xs font-bold text-[#023137] uppercase tracking-wider">Tier 3 — Non-Profit</h4>
+              <div class="text-2xl font-extrabold text-[#023137] mt-1.5">$14.40 - $18.00 <span class="text-xs font-semibold text-slate-500">/hr</span></div>
+              <div class="text-xs text-slate-600 mt-2 font-medium">VEA Pay Floor: $8.00 - $10.00/hr</div>
               <div class="text-xs text-slate-500 mt-0.5">Markup: 80% ($6.40 - $8.00/hr)</div>
-              <div class="text-[11px] text-slate-400 mt-2 font-mono">Est. Monthly: $623.52 - $779.40/mo</div>
+              <div class="text-xs text-[#023137] mt-3 font-semibold bg-slate-100 p-2 rounded-lg text-center">Est. Monthly: $623.52 - $779.40/mo</div>
             </div>
           </div>
 
-          <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
-            <h4 class="font-bold text-white text-sm">Financial Mechanics:</h4>
-            <p>• <strong class="text-slate-200">Placement Fee:</strong> $84.30 one-time fee per placement (covers 5.3h screening @ $6/hr + 0.75h CEO matching @ $70/hr).</p>
-            <p>• <strong class="text-slate-200">Payouts (Wise):</strong> Biweekly on Wise with a 10-day offset. Timesheets lock Friday at 3:00 PM PST.</p>
-            <p>• <strong class="text-slate-200">6-Month Pay Progression:</strong> VEAs with zero UAs/Lates and 4–5 star ratings qualify for a +$0.50/hr pay raise (+ $0.90/hr client rate increase at renewal).</p>
+          <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 text-xs text-slate-700 space-y-2.5 shadow-sm">
+            <h4 class="font-bold text-[#023137] text-sm">Financial Mechanics:</h4>
+            <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">Placement Fee:</strong> $84.30 one-time fee per placement (covers 5.3h screening @ $6/hr + 0.75h CEO matching @ $70/hr).</p>
+            <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">Payouts (Wise):</strong> Biweekly on Wise with a 10-day offset. Timesheets lock Friday at 3:00 PM PST.</p>
+            <p class="leading-relaxed font-medium">• <strong class="text-[#023137]">6-Month Pay Progression:</strong> VEAs with zero UAs/Lates and 4–5 star ratings qualify for a +$0.50/hr pay raise (+ $0.90/hr client rate increase at renewal).</p>
           </div>
         `;
       }
